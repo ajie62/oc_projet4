@@ -1,0 +1,5 @@
+bj_reservation:
+    resource: "@BJReservationBundle/Controller"
+    type:   annotation
+
+

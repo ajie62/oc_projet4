@@ -1,0 +1,4 @@
+services:
+#    bj_reservation.example:
+#        class: BJ\ReservationBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
