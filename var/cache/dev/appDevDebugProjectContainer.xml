@@ -15,6 +15,7 @@
       <parameter key="SwiftmailerBundle">Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle</parameter>
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
+      <parameter key="BJReservationBundle">BJ\ReservationBundle\BJReservationBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -55,6 +56,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/Users/Jerome/Documents/www/oc_projet4/vendor/sensio/framework-extra-bundle</parameter>
         <parameter key="namespace">Sensio\Bundle\FrameworkExtraBundle</parameter>
+      </parameter>
+      <parameter key="BJReservationBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Users/Jerome/Documents/www/oc_projet4/src/BJ/ReservationBundle</parameter>
+        <parameter key="namespace">BJ\ReservationBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -146,6 +152,7 @@
     <parameter key="twig.exception_listener.controller">twig.controller.exception:showAction</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
+      <parameter>bootstrap_3_layout.html.twig</parameter>
     </parameter>
     <parameter key="monolog.use_microseconds">true</parameter>
     <parameter key="monolog.swift_mailer.handlers" type="collection"/>
@@ -449,7 +456,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>EZnDJb2P6+</argument>
                 <argument>0</argument>
-                <argument>oofrofOSqE1kEEiGjrtiDa</argument>
+                <argument>AaGCHW4gooEidZvsET9-8Y</argument>
                 <argument>/Users/Jerome/Documents/www/oc_projet4/var/cache/dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -632,7 +639,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>HFygLjfp9K</argument>
       <argument>0</argument>
-      <argument>oofrofOSqE1kEEiGjrtiDa</argument>
+      <argument>AaGCHW4gooEidZvsET9-8Y</argument>
       <argument>/Users/Jerome/Documents/www/oc_projet4/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -642,7 +649,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>q3aso-oiaU</argument>
       <argument>0</argument>
-      <argument>oofrofOSqE1kEEiGjrtiDa</argument>
+      <argument>AaGCHW4gooEidZvsET9-8Y</argument>
       <argument>/Users/Jerome/Documents/www/oc_projet4/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1635,7 +1642,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>58ff0ca8dfa1a2.53711033</argument>
+            <argument>58ff40f76606c1.79116857</argument>
           </service>
         </argument>
       </argument>
@@ -1783,7 +1790,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>58ff0ca8dfa1a2.53711033</argument>
+            <argument>58ff40f76606c1.79116857</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -1841,10 +1848,11 @@
       <argument type="collection">
         <argument key="debug">true</argument>
         <argument key="strict_variables">true</argument>
-        <argument key="exception_controller">twig.controller.exception:showAction</argument>
         <argument key="form_themes" type="collection">
           <argument>form_div_layout.html.twig</argument>
+          <argument>bootstrap_3_layout.html.twig</argument>
         </argument>
+        <argument key="exception_controller">twig.controller.exception:showAction</argument>
         <argument key="autoescape">name</argument>
         <argument key="cache">/Users/Jerome/Documents/www/oc_projet4/var/cache/dev/twig</argument>
         <argument key="charset">UTF-8</argument>
@@ -2094,6 +2102,7 @@
         <service class="Symfony\Bridge\Twig\Form\TwigRendererEngine" public="false">
           <argument type="collection">
             <argument>form_div_layout.html.twig</argument>
+            <argument>bootstrap_3_layout.html.twig</argument>
           </argument>
           <argument type="service" id="twig"/>
         </service>
@@ -2242,7 +2251,9 @@
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="BJReservationBundle">BJ\ReservationBundle\Entity</argument>
+            </argument>
           </call>
           <call method="setMetadataCacheImpl">
             <argument type="service" id="doctrine_cache.providers.doctrine.orm.default_metadata_cache"/>
@@ -2255,7 +2266,19 @@
           </call>
           <call method="setMetadataDriverImpl">
             <argument type="service">
-              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false"/>
+              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/Users/Jerome/Documents/www/oc_projet4/src/BJ/ReservationBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>BJ\ReservationBundle\Entity</argument>
+                </call>
+              </service>
             </argument>
           </call>
           <call method="setProxyDir">

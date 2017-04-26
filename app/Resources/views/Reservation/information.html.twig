@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Vos informations{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="page-header">Musée du Louvre<br><small>Réservation en ligne</small></h1>
+
+        {% for message in app.session.flashbag.get('notice') %}
+            <p class="alert alert-success">{{ message }}</p>
+        {% endfor %}
+
+        <div id="reservation">
+            <div class="row">
+                <div class="col-xs-12 col-sm-7">
+                    {{ form(form) }}
+                </div>
+
+                <div class="col-xs-12 col-sm-offset-1 col-sm-4">
+                    <div class="summary well">
+                        <h3>Votre réservation</h3>
+                        <strong>Date de votre réservation : </strong> {{ app.session.get('reservation').date|date('d/m/Y') }}
+                        <br>
+                        <strong>Type de billet choisi : </strong> {{ app.session.get('reservation').type }}<br>
+                        <strong>Nombre de billets : </strong> {{ app.session.get('reservation').ticketsNumber }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
