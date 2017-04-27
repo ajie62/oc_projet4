@@ -114,4 +114,6 @@
   'WebProfilerBundle:Router:panel.html.twig' => __DIR__.'/../../../vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views/Router/panel.html.twig',
   '::base.html.twig' => __DIR__.'/../../../app/Resources/views/base.html.twig',
   ':Reservation:index.html.twig' => __DIR__.'/../../../app/Resources/views/Reservation/index.html.twig',
+  ':Reservation:information.html.twig' => __DIR__.'/../../../app/Resources/views/Reservation/information.html.twig',
+  ':Reservation:payment.html.twig' => __DIR__.'/../../../app/Resources/views/Reservation/payment.html.twig',
 );

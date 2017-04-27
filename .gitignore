@@ -1,0 +1,12 @@
+/app/config/parameters.yml
+/var/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+/vendor/
+var/
+composer.lock
+web/bundles/
