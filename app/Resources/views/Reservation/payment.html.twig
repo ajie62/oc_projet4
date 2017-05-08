@@ -4,27 +4,55 @@
     <div class="container">
         <div id="reservation">
             <div class="row">
-                <h1 class="page-header">Musée du Louvre<br><small>Réservation en ligne</small></h1>
                 <div class="col-xs-12 col-sm-7">
                     {% for message in app.session.flashbag.get('notice') %}
                         <p class="alert alert-success">{{ message }}</p>
                     {% endfor %}
+
+                    <form class="form" action="">
+                        <div class="form-group">
+                            <input type="text" name="name" required placeholder="Votre nom" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" required placeholder="votre@email.fr" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Votre numéro de carte" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="MM" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="YY" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="CVC" class="form-control">
+                        </div>
+                        <p>
+                            <button class="btn btn-primary" type="submit">Acheter</button>
+                        </p>
+                    </form>
                 </div>
 
                 <div class="col-xs-12 col-sm-offset-1 col-sm-4">
-                    <div class="summary well">
+                    <aside class="summary well">
                         <h3>Votre réservation</h3>
                         <strong>Date de votre réservation : </strong> {{ app.session.get('reservation').date|date('d/m/Y') }}
                         <br>
                         <strong>Type de billet choisi : </strong> {{ app.session.get('reservation').type }}<br>
-                        <strong>Nombre de billets : </strong> {{ app.session.get('reservation').ticketsNumber }}
+                        <strong>Nombre de billets : </strong> {{ app.session.get('reservation').ticketsNumber }}<br><br>
+                        {% if app.session.get('reservation').reduction %}
+                            <em><strong>Je dispose</strong> du tarif réduit.</em>
+                        {% else %}
+                            <em>Je ne dispose pas du tarif réduit.</em>
+                        {% endif %}
 
                         <h3>Vos informations</h3>
                         <strong>Nom :</strong> {{ app.session.get('client').lastname }}<br>
                         <strong>Prénom :</strong> {{ app.session.get('client').firstname }}<br>
                         <strong>Date de naissance :</strong> {{ app.session.get('client').birthdate|date('d/m/Y') }}<br>
                         <strong>Pays :</strong> {{ app.session.get('client').country }}
-                    </div>
+                    </aside>
                 </div>
             </div>
         </div>

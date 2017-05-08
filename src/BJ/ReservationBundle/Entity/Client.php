@@ -49,6 +49,10 @@ class Client
      */
     private $country;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Reservation", inversedBy="clients", cascade={"persist", "remove"})
+     */
+    private $reservation;
 
     /**
      * Get id
@@ -154,5 +158,29 @@ class Client
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set reservation
+     *
+     * @param \BJ\ReservationBundle\Entity\Reservation $reservation
+     *
+     * @return Client
+     */
+    public function setReservation(\BJ\ReservationBundle\Entity\Reservation $reservation = null)
+    {
+        $this->reservation = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * Get reservation
+     *
+     * @return \BJ\ReservationBundle\Entity\Reservation
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
     }
 }

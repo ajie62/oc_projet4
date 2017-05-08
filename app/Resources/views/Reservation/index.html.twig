@@ -4,10 +4,18 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="page-header">Musée du Louvre<br><small>Réservation en ligne</small></h1>
+
+        <div class="alert alert-info tarifs-container">
+            <h3>Tarifs</h3>
+            <ul>
+                <li>12 &euro; à partir de 12 ans (tarif &laquo; normal &raquo;)</li>
+                <li>8 &euro; à partir de 4 ans et jusqu'à 12 ans (tarif &laquo; enfant &raquo;, entrée gratuite pour les moins de 4 ans)</li>
+                <li>12 &euro; à partir de 60 ans (tarif &laquo; senior &raquo;)</li>
+                <li>10 &euro; dans certaines conditions (tarif &laquo; réduit &raquo; pour étudiants, employés de musée, service du Ministère de la Culture, militaires, ...)</li>
+            </ul>
+        </div>
 
         <div id="reservation">
-            <h3>Choisissez une date</h3>
             <div class="row">
                 <div class="col-xs-12 col-sm-7">
                     {{ form(form) }}
@@ -15,7 +23,7 @@
 
                 <div class="col-xs-12 col-sm-offset-1 col-sm-4">
                     <div class="summary well">
-                        <p>Résumé de la réservation</p>
+                        <p>Aucune données entrées pour le moment.</p>
                     </div>
                 </div>
             </div>

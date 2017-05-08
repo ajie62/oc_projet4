@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ClientType extends AbstractType
 {
@@ -20,13 +21,16 @@ class ClientType extends AbstractType
         $builder
             ->add('firstname', TextType::class, array(
                 'label' => 'Prénom',
+                'constraints' => new Assert\Type('string'),
             ))
             ->add('lastname', TextType::class, array(
                 'label' => 'Nom',
             ))
             ->add('birthdate', BirthdayType::class, array(
                 'label' => 'Date de naissance',
+                'attr' => ['class' => 'birth-datepicker'],
                 'widget' => 'single_text',
+                'format' => "dd/mm/yy",
             ))
             ->add('country', CountryType::class, array(
                 'label' => 'Pays',
@@ -54,6 +58,4 @@ class ClientType extends AbstractType
     {
         return 'bj_reservationbundle_client';
     }
-
-
 }

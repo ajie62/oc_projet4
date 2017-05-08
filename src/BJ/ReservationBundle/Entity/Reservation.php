@@ -2,6 +2,7 @@
 
 namespace BJ\ReservationBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,9 +51,22 @@ class Reservation
      */
     private $dateReservation;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="reduction", type="boolean")
+     */
+    private $reduction = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="reservation", cascade={"persist", "remove"})
+     */
+    private $clients;
+
     public function __construct()
     {
         $this->dateReservation = new \Datetime();
+        $this->clients = new ArrayCollection();
     }
 
     /**
@@ -159,5 +173,63 @@ class Reservation
     public function getDateReservation()
     {
         return $this->dateReservation;
+    }
+
+    /**
+     * Set reduction
+     *
+     * @param boolean $reduction
+     *
+     * @return Reservation
+     */
+    public function setReduction($reduction)
+    {
+        $this->reduction = $reduction;
+
+        return $this;
+    }
+
+    /**
+     * Get reduction
+     *
+     * @return boolean
+     */
+    public function getReduction()
+    {
+        return $this->reduction;
+    }
+
+    /**
+     * Add client
+     *
+     * @param \BJ\ReservationBundle\Entity\Client $client
+     *
+     * @return Reservation
+     */
+    public function addClient(\BJ\ReservationBundle\Entity\Client $client)
+    {
+        $this->clients[] = $client;
+
+        return $this;
+    }
+
+    /**
+     * Remove client
+     *
+     * @param \BJ\ReservationBundle\Entity\Client $client
+     */
+    public function removeClient(\BJ\ReservationBundle\Entity\Client $client)
+    {
+        $this->clients->removeElement($client);
+    }
+
+    /**
+     * Get clients
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getClients()
+    {
+        return $this->clients;
     }
 }

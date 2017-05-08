@@ -48,6 +48,8 @@ class ReservationController extends Controller
         if(null == $request->getSession()->get('reservation')) {
             return $this->redirectToRoute('homepage');
         }
+
+
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);

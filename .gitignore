@@ -9,4 +9,3 @@
 /vendor/
 var/
 composer.lock
-web/bundles/

@@ -1,8 +1,0 @@
-99a73c,::1,GET,http://localhost:8888/oc_projet4/web/app_dev.php/,1493287518,,200
-020888,::1,POST,http://localhost:8888/oc_projet4/web/app_dev.php/,1493287538,,302
-38fa4e,::1,GET,http://localhost:8888/oc_projet4/web/app_dev.php/information,1493287539,,200
-cb6665,::1,POST,http://localhost:8888/oc_projet4/web/app_dev.php/information,1493287561,,302
-dec221,::1,GET,http://localhost:8888/oc_projet4/web/app_dev.php/payment,1493287561,,200
-490e2e,::1,GET,http://localhost:8888/oc_projet4/web/app_dev.php/,1493287577,,200
-9f6f2d,::1,GET,http://localhost:8888/oc_projet4/web/app_dev.php/,1493287852,,200
-6ad53a,::1,GET,http://localhost:8888/oc_projet4/web/app_dev.php/,1493287856,,200

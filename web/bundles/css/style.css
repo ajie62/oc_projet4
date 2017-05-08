@@ -1,2 +1,6 @@
 .logo { height: 100px; }
 .calendar { min-height: 250px; }
+
+.tarifs-container h3 {
+    margin-top: 0;
+}

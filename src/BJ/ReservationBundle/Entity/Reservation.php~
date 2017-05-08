@@ -2,6 +2,7 @@
 
 namespace BJ\ReservationBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,7 +32,8 @@ class Reservation
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity="BJ\ReservationBundle\Entity\typeTicket", cascade={"persist"})
      */
     private $type;
 
@@ -49,9 +51,22 @@ class Reservation
      */
     private $dateReservation;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="reduction", type="boolean")
+     */
+    private $reduction = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="reservation", cascade={"persist", "remove"})
+     */
+    private $clients;
+
     public function __construct()
     {
         $this->dateReservation = new \Datetime();
+        $this->clients = new ArrayCollection();
     }
 
     /**
@@ -135,5 +150,52 @@ class Reservation
     {
         return $this->ticketsNumber;
     }
-}
 
+    /**
+     * Set dateReservation
+     *
+     * @param \DateTime $dateReservation
+     *
+     * @return Reservation
+     */
+    public function setDateReservation($dateReservation)
+    {
+        $this->dateReservation = $dateReservation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateReservation
+     *
+     * @return \DateTime
+     */
+    public function getDateReservation()
+    {
+        return $this->dateReservation;
+    }
+
+    /**
+     * Set reduction
+     *
+     * @param boolean $reduction
+     *
+     * @return Reservation
+     */
+    public function setReduction($reduction)
+    {
+        $this->reduction = $reduction;
+
+        return $this;
+    }
+
+    /**
+     * Get reduction
+     *
+     * @return boolean
+     */
+    public function getReduction()
+    {
+        return $this->reduction;
+    }
+}

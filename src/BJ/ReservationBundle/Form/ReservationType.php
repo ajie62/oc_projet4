@@ -2,14 +2,15 @@
 
 namespace BJ\ReservationBundle\Form;
 
-use BJ\ReservationBundle\Entity\typeTicket;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ReservationType extends AbstractType
 {
@@ -20,20 +21,36 @@ class ReservationType extends AbstractType
     {
         $builder
             ->add('date', DateType::class, array(
-                'label' => 'Date de la visite',
+                'label' => 'Date',
                 'attr' => ['class' => 'js-datepicker'],
                 'widget' => 'single_text',
-                'format' => 'M/d/y',
+                'format' => "dd/MM/yyyy",
+                'constraints' => [
+                    new Assert\Range(array(
+                        'min' => 'yesterday',
+                        'max' => '+8760 hours',
+                        'minMessage' => "La date est dans le passé.",
+                        'maxMessage' => "Vous êtes allé trop loin !",
+                    ))
+                ]
             ))
-            ->add('type', ChoiceType::class, array(
+            ->add('type', EntityType::class, array(
+                'class' => 'BJ\ReservationBundle\Entity\Type',
+                'choice_label' => 'name',
+                'placeholder' => 'Quel type de billet désirez-vous ?',
                 'required' => true,
             ))
             ->add('ticketsNumber', NumberType::class, array(
                 'label' => 'Nombre de billets',
                 'required' => true,
-            ))
-            ->add('save', SubmitType::class, array(
-                'label' => 'Continuer',
+                'constraints' => [
+                    new Assert\Range(array(
+                        'min' => 1,
+                        'max' => 20,
+                        'minMessage' => "Vous devez au moins réserver {{ limit }} billet.",
+                        'maxMessage' => "Il est impossible de réserver plus de {{ limit }} billets.",
+                    ))
+                ]
             ))
         ;
     }

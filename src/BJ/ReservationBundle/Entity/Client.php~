@@ -49,6 +49,10 @@ class Client
      */
     private $country;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Reservation", inversedBy="clients", cascade={"persist", "remove"})
+     */
+    private $reservation;
 
     /**
      * Get id
@@ -156,4 +160,3 @@ class Client
         return $this->country;
     }
 }
-
