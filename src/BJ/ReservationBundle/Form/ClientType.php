@@ -5,6 +5,7 @@ namespace BJ\ReservationBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,23 +22,31 @@ class ClientType extends AbstractType
         $builder
             ->add('firstname', TextType::class, array(
                 'label' => 'Prénom',
+                'required' => true,
                 'constraints' => new Assert\Type('string'),
             ))
             ->add('lastname', TextType::class, array(
                 'label' => 'Nom',
+                'required' => true,
+                'constraints' => new Assert\Type('string'),
+            ))
+            ->add('email', EmailType::class, array(
+                'label' => 'Email',
+                'required' => true,
             ))
             ->add('birthdate', BirthdayType::class, array(
                 'label' => 'Date de naissance',
-                'attr' => ['class' => 'birth-datepicker'],
-                'widget' => 'single_text',
-                'format' => "dd/mm/yy",
+                'placeholder' => array(
+                    'day' => 'Jour', 'month' => 'Mois', 'year' => 'Année',
+                ),
+                'format' => 'dd/MM/yyyy',
             ))
             ->add('country', CountryType::class, array(
                 'label' => 'Pays',
                 'placeholder' => 'Choisissez votre pays',
             ))
             ->add('submit', SubmitType::class, array(
-                'label' => 'Continuer'
+                'label' => 'Continuer',
             ));
     }
     

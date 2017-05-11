@@ -1,35 +1,17 @@
-// L'année en cours.
-var year = new Date().getFullYear();
-
-// Tous les jours fériés français.
-var feries = [
-    "01/01/" + year,
-    "17/04/" + year,
-    "01/05/" + year,
-    "08/05/" + year,
-    "25/05/" + year,
-    "05/06/" + year,
-    "14/07/" + year,
-    "15/08/" + year,
-    "01/11/" + year,
-    "11/11/" + year,
-    "25/12/" + year
-];
-
-// Permet de désactiver
-function disableDates(date) {
-    var dt = $.datepicker.formatDate('dd/mm/yy', date);
-    var noWeekend = $.datepicker.noWeekends(date);
-    return noWeekend[0] ? (($.inArray(dt, feries) < 0) ? [true] : [false]) : noWeekend;
-}
-
 $(function() {
+    var d = new Date();
+    var minDate = null;
+    if(d.getHours() > 14) {
+        minDate = 1;
+    } else {
+        minDate = 0;
+    }
+
     $(".js-datepicker").datepicker({
-        minDate: 0,
+        minDate: minDate,
         maxDate: '+1Y',
         dateFormat: "dd/mm/yy",
-        closeText: "Close",
-        beforeShowDay: disableDates
+        closeText: "Close"
     });
 
     $(".birth-datepicker").datepicker({
@@ -39,5 +21,9 @@ $(function() {
         closeText: "Fermer",
         showButtonPanel: true,
         dateFormat: "dd/mm/yy"
+    });
+
+    $(".js-datepicker").focus(function(e) {
+        $(this).blur();
     });
 });

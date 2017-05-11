@@ -1,3 +1,11 @@
+h1, h2, h3, h4, h5, a {
+    color: #2c3e50!important;
+}
+
+aside h3 {
+    margin: 0;
+}
+
 .logo { height: 100px; }
 .calendar { min-height: 250px; }
 

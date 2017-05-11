@@ -3,7 +3,7 @@
 namespace BJ\ReservationBundle\Controller;
 
 use BJ\ReservationBundle\Entity\Client;
-use BJ\ReservationBundle\Form\ClientType;
+use BJ\ReservationBundle\Form\InfoStepType;
 use Symfony\Component\HttpFoundation\Request;
 use BJ\ReservationBundle\Entity\Reservation;
 use BJ\ReservationBundle\Form\ReservationType;
@@ -19,17 +19,17 @@ class ReservationController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $reservation = new Reservation();
-        $form = $this->createForm(ReservationType::class, $reservation);
+        $booking = new Reservation();
+
+        $form = $this->createForm(ReservationType::class, $booking);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($reservation);
-            $request->getSession()->set('reservation', $reservation);
-
-            $request->getSession()->getFlashBag()->add('notice', "Passons maintenant aux informations vous concernant.");
-
+            for($i = 0; $i<$booking->getTicketsNumber(); $i++) {
+                $client = new Client();
+                $booking->addClient($client);
+            }
+            $this->get('session')->set('booking', $booking);
             return $this->redirectToRoute('information');
         }
 
@@ -39,28 +39,19 @@ class ReservationController extends Controller
     }
 
     /**
-     * @Route("/information", name="information")
-     *
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/information", name="information")
      */
     public function informationAction(Request $request)
     {
-        if(null == $request->getSession()->get('reservation')) {
-            return $this->redirectToRoute('homepage');
-        }
+        $booking = $this->get('session')->get('booking');
 
-
-        $client = new Client();
-        $form = $this->createForm(ClientType::class, $client);
+        $form = $this->createForm(InfoStepType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($client);
-            $request->getSession()->set('client', $client);
-
-            $request->getSession()->getFlashBag()->add('notice', "D'accord. Pour terminer, entrez vos informations de paiement.");
-
+            $this->get('session')->set('booking', $booking);
             return $this->redirectToRoute('payment');
         }
 
@@ -68,6 +59,7 @@ class ReservationController extends Controller
             'form' => $form->createView(),
         ));
     }
+
 
     /**
      * @Route("/payment", name="payment")

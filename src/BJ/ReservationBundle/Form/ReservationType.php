@@ -3,11 +3,9 @@
 namespace BJ\ReservationBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -34,13 +32,16 @@ class ReservationType extends AbstractType
                     ))
                 ]
             ))
-            ->add('type', EntityType::class, array(
-                'class' => 'BJ\ReservationBundle\Entity\Type',
-                'choice_label' => 'name',
-                'placeholder' => 'Quel type de billet désirez-vous ?',
-                'required' => true,
+            ->add('type', ChoiceType::class, array(
+                'choices' => array(
+                    'Demi-journée' => 'demi-journée',
+                    'Journée' => 'journée',
+                ),
+                'placeholder' => "Choisissez le type de billet souhaité",
+                'multiple' => false,
+                'expanded' => true,
             ))
-            ->add('ticketsNumber', NumberType::class, array(
+            ->add('ticketsNumber', IntegerType::class, array(
                 'label' => 'Nombre de billets',
                 'required' => true,
                 'constraints' => [
@@ -50,7 +51,7 @@ class ReservationType extends AbstractType
                         'minMessage' => "Vous devez au moins réserver {{ limit }} billet.",
                         'maxMessage' => "Il est impossible de réserver plus de {{ limit }} billets.",
                     ))
-                ]
+                ],
             ))
         ;
     }
