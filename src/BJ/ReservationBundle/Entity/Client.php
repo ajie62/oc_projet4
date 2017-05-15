@@ -57,6 +57,13 @@ class Client
     private $email;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="discount", type="boolean")
+     */
+    private $discount = false;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Reservation", inversedBy="clients", cascade={"persist", "remove"})
      */
     private $reservation;
@@ -213,5 +220,29 @@ class Client
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set discount
+     *
+     * @param boolean $discount
+     *
+     * @return Client
+     */
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Get discount
+     *
+     * @return boolean
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
     }
 }

@@ -1,14 +1,53 @@
-h1, h2, h3, h4, h5, a {
-    color: #2c3e50!important;
+/***************\
+     GLOBAL
+\***************/
+body {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-aside h3 {
-    margin: 0;
-}
+h1, h2, h3, h4, h5, a { color: #2c3e50!important; }
 
-.logo { height: 100px; }
+/* Allows sticky footer */
+.main-container { flex: 1 0 0; }
+
+/* Aside */
+aside { padding: 15px;}
+aside h3 { margin: 0 0 10px 0; }
+
+/***************\
+    FIRST PAGE
+\***************/
+
+/* Booking form */
+.booking-form { padding: 15px; }
+
+/* Prices container */
+.prices-container h3 { margin-top: 0; }
+
+/* Datepicker */
 .calendar { min-height: 250px; }
 
-.tarifs-container h3 {
-    margin-top: 0;
+/* Discount conditions */
+.conditions { font-weight:bold; }
+.conditions:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/***************\
+     FOOTER
+\***************/
+footer {
+    background-color: #2c3e50;
+    margin-top: 30px;
+    padding: 10px 0;
+}
+
+footer p {
+    color: #fff;
+    font-weight: 300;
+    margin: 10px 0;
 }

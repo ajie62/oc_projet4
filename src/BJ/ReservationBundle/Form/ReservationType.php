@@ -2,6 +2,7 @@
 
 namespace BJ\ReservationBundle\Form;
 
+use BJ\ReservationBundle\Validator\Constraints\IsMoreThanFourteen;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -37,7 +38,6 @@ class ReservationType extends AbstractType
                     'Demi-journée' => 'demi-journée',
                     'Journée' => 'journée',
                 ),
-                'placeholder' => "Choisissez le type de billet souhaité",
                 'multiple' => false,
                 'expanded' => true,
             ))

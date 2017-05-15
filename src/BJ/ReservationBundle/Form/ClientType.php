@@ -2,8 +2,12 @@
 
 namespace BJ\ReservationBundle\Form;
 
+use BJ\ReservationBundle\Validator\Constraints\ContainsLettersAndAccents;
+use BJ\ReservationBundle\Validator\Constraints\ContainsLettersAndAccentsValidator;
+use BJ\ReservationBundle\Validator\Constraints\IsRealEmail;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -23,31 +27,42 @@ class ClientType extends AbstractType
             ->add('firstname', TextType::class, array(
                 'label' => 'Prénom',
                 'required' => true,
-                'constraints' => new Assert\Type('string'),
+                'constraints' => [
+                    new Assert\Type('string'),
+                    new ContainsLettersAndAccents(),
+                ],
             ))
             ->add('lastname', TextType::class, array(
                 'label' => 'Nom',
                 'required' => true,
-                'constraints' => new Assert\Type('string'),
+                'constraints' => [
+                    new Assert\Type('string'),
+                    new ContainsLettersAndAccents(),
+                ],
             ))
             ->add('email', EmailType::class, array(
                 'label' => 'Email',
                 'required' => true,
+                'constraints' => [
+                    new Assert\Email(), // Validation de l'adresse email
+                ],
             ))
             ->add('birthdate', BirthdayType::class, array(
                 'label' => 'Date de naissance',
                 'placeholder' => array(
                     'day' => 'Jour', 'month' => 'Mois', 'year' => 'Année',
                 ),
-                'format' => 'dd/MM/yyyy',
+                'format' => 'ddMMyyyy',
             ))
             ->add('country', CountryType::class, array(
                 'label' => 'Pays',
                 'placeholder' => 'Choisissez votre pays',
             ))
-            ->add('submit', SubmitType::class, array(
-                'label' => 'Continuer',
-            ));
+            ->add('discount', CheckboxType::class, array(
+                'label' => 'Je dispose du prix réduit',
+                'required' => false,
+            ))
+        ;
     }
     
     /**

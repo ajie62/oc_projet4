@@ -15,11 +15,10 @@ class InfoStepType extends AbstractType
     {
         $builder
             ->add('clients', CollectionType::class, array(
+                'label' => false,
                 'entry_type' => ClientType::class,
-
-                'allow_add' => true,
-                'allow_delete' => true,
-            ))
+                'entry_options' => array('label' => false),
+             ))
         ;
     }
 

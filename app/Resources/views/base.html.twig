@@ -15,14 +15,21 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <div class="container">
-            <h1 class="page-header"><a href="{{ path('homepage') }}">Musée du Louvre</a><br><small>Réservation en ligne</small></h1>
-        </div>
-
         {% block body %}{% endblock %}
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="text-center">Travail réalisé par {{ webmaster }} dans le cadre du projet &laquo; Développez un back-end pour un client &raquo; (OpenClassrooms)</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
         {% block javascripts %}
             <script type="text/javascript" src="https://js.stripe.com/v2/"></script> {# Intégration de Stripe #}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
             <script src="{{ asset("bundles/js/jquery-ui.min.js") }}"></script>
             <script src="{{ asset("bundles/js/main.js") }}"></script>
         {% endblock %}

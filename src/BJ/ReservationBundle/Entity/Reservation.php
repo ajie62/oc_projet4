@@ -33,7 +33,6 @@ class Reservation
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=true)
-     * @ORM\OneToOne(targetEntity="BJ\ReservationBundle\Entity\typeTicket", cascade={"persist"})
      */
     private $type;
 
@@ -56,7 +55,7 @@ class Reservation
      *
      * @ORM\Column(name="reduction", type="boolean")
      */
-    private $reduction = false;
+    private $reduction;
 
     /**
      * @ORM\OneToMany(targetEntity="Client", mappedBy="reservation", cascade={"persist", "remove"})

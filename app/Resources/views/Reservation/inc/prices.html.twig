@@ -1,13 +1,39 @@
-<hr>
+<aside class="alert alert-info prices-container">
+    <h4>Tarifs</h4>
+    <dl>
+        <dt>&laquo; Normal &raquo;</dt>
+        <dd>À partir de 12 ans : <strong>16 &euro;</strong></dd>
+        <br>
+        <dt>&laquo; Enfant &raquo;</dt>
+        <dd>À partir de 4 ans et jusqu'à 12 ans : <strong>8 &euro;</strong></dd>
+        <br>
+        <dt>&laquo; Senior &raquo;</dt>
+        <dd>À partir de 60 ans : <strong>12 &euro;</strong></dd>
+        <br>
+        <dt>&laquo; Réduit &raquo;</dt>
+        <dd>
+            Dans <span class="conditions" data-toggle="modal" data-target="#myModal">
+                certaines conditions</span> : <strong>10 &euro;</strong>
+        </dd>
+    </dl>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tarif réduit</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-justify">
+                        Vous ne bénéficierez du tarif réduit de 10&euro; que sur présentation d'un justificatif valable
+                        (carte d'étudiant, carte militaire, carte d'invalidité, etc.) le jour de votre visite,
 
-<div class="alert alert-info tarifs-container">
-    <h3>Tarifs</h3>
-    <ul>
-        <li>12 &euro; à partir de 12 ans (tarif &laquo; normal &raquo;)</li>
-        <li>8 &euro; à partir de 4 ans et jusqu'à 12 ans (tarif &laquo; enfant &raquo;, entrée gratuite pour les moins de 4 ans)</li>
-        <li>12 &euro; à partir de 60 ans (tarif &laquo; senior &raquo;)</li>
-        <li>10 &euro; dans certaines conditions (tarif &laquo; réduit &raquo; pour étudiants, employés de musée, service du Ministère de la Culture, militaires, ...)</li>
-    </ul>
-</div>
-
-<hr>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>

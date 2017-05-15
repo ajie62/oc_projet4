@@ -3,25 +3,22 @@
 {% block title %}Réservation{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container main-container">
         <div id="reservation">
+            {% include "Reservation/inc/title.html.twig" %}
+
             <div class="row">
-                <div class="col-xs-12 col-sm-7">
+                <div class="col-xs-12 col-sm-3">
+                    {% include "Reservation/inc/prices.html.twig" %}
+                </div>
+                <div class="col-xs-12 col-sm-6 booking-form">
                     {{ form_start(form) }}
                         {{ form_widget(form) }}
 
-                    <input type="submit" value="Continuer" class="btn btn-default pull-right">
+                    <button type="submit" class="btn btn-success pull-right">Continuer</button>
                     {{ form_end(form) }}
-                </div>
-
-                <div class="col-xs-12 col-sm-offset-1 col-sm-4">
-                    <aside class="summary well">
-                        <h3>Détails de la réservation</h3>
-                    </aside>
                 </div>
             </div>
         </div>
-
-        {% include "Reservation/inc/prices.html.twig" %}
     </div>
 {% endblock %}

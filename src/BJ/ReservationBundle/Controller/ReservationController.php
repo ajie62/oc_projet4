@@ -30,6 +30,7 @@ class ReservationController extends Controller
                 $booking->addClient($client);
             }
             $this->get('session')->set('booking', $booking);
+            $this->get('session')->getFlashBag()->add('notice', 'Étape 1 confirmée.');
             return $this->redirectToRoute('information');
         }
 
@@ -47,11 +48,12 @@ class ReservationController extends Controller
     {
         $booking = $this->get('session')->get('booking');
 
-        $form = $this->createForm(InfoStepType::class);
+        $form = $this->createForm(InfoStepType::class, $booking);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
             $this->get('session')->set('booking', $booking);
+            $this->get('session')->getFlashBag()->add('notice', 'Étape 2 confirmée.');
             return $this->redirectToRoute('payment');
         }
 
@@ -68,6 +70,13 @@ class ReservationController extends Controller
      */
     public function paymentAction()
     {
-        return $this->render('Reservation/payment.html.twig');
+        $booking = $this->get('session')->get('booking');
+
+        $price = $this->get('bj_reservation_pricemanager')->calculate($booking);
+
+        return $this->render('Reservation/payment.html.twig', array(
+            'booking' => $booking,
+            'price' => $price,
+        ));
     }
 }
