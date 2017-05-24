@@ -40,13 +40,6 @@ class ClientType extends AbstractType
                     new ContainsLettersAndAccents(),
                 ],
             ))
-            ->add('email', EmailType::class, array(
-                'label' => 'Email',
-                'required' => true,
-                'constraints' => [
-                    new Assert\Email(), // Validation de l'adresse email
-                ],
-            ))
             ->add('birthdate', BirthdayType::class, array(
                 'label' => 'Date de naissance',
                 'placeholder' => array(
@@ -59,7 +52,7 @@ class ClientType extends AbstractType
                 'placeholder' => 'Choisissez votre pays',
             ))
             ->add('discount', CheckboxType::class, array(
-                'label' => 'Je dispose du prix réduit',
+                'label' => 'Dispose du prix réduit',
                 'required' => false,
             ))
         ;

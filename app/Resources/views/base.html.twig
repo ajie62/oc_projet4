@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Musée du Louvres{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-            <link rel="stylesheet" href="{{ asset("bundles/css/jquery-ui.min.css") }}">
-            <link rel="stylesheet" href="{{ asset("bundles/css/style.css") }}">
+            <link rel="stylesheet" href="{{ asset("css/jquery-ui.min.css") }}">
+            <link rel="stylesheet" href="{{ asset("css/style.css") }}">
         {% endblock %}
         <meta name="description" content="">
         <meta name="author" content="Jérôme Butel">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <div class="container">
+            {% include "Reservation/inc/title.html.twig" %}
+        </div>
+
         {% block body %}{% endblock %}
 
         <footer>
@@ -30,8 +34,8 @@
             <script type="text/javascript" src="https://js.stripe.com/v2/"></script> {# Intégration de Stripe #}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-            <script src="{{ asset("bundles/js/jquery-ui.min.js") }}"></script>
-            <script src="{{ asset("bundles/js/main.js") }}"></script>
+            <script src="{{ asset("js/jquery-ui.min.js") }}"></script>
+            <script src="{{ asset("js/main.js") }}"></script>
         {% endblock %}
     </body>
 </html>

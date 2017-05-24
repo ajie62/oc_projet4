@@ -1,0 +1,120 @@
+/***************\
+     GLOBAL
+\***************/
+body {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a.toHomepage { text-decoration: none; }
+
+/* Prices container */
+.prices-container {
+    background-color: #4e4e4e;
+    color: #fff;
+    padding: 5px 15px;
+}
+
+.prices-container h3 { margin-top: 0; }
+
+.prices-container dl {
+    font-size: .9em;
+}
+
+.summary {
+    background-color: #4e4e4e;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.summary p {
+    font-weight: 200;
+}
+
+/* Website header */
+.website-logo { width: 230px; }
+
+/* Allows sticky footer */
+.main-container { flex: 1 0 0; }
+
+.form-buttons { margin-top: 10px; }
+.continuer-button {
+    background-color: #4e4e4e;
+    color: #fff;
+}
+
+.go-back {
+    background-color: #c82d00;
+    color: #fff;
+}
+
+.control-label {
+    background-color: rgba(78, 78, 78, .8);
+    color: #fff;
+    display: block;
+    padding: 10px;
+}
+
+/* Aside */
+aside h3 { margin: 0 0 10px 0; }
+
+.info-clients { display: none; }
+.info-booking { cursor: pointer; }
+
+/***************\
+    FIRST PAGE
+\***************/
+
+/* Booking form */
+.booking-form { padding: 0 15px; }
+
+/* Discount conditions */
+.conditions { font-weight:bold; }
+.conditions:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/***************\
+   SECOND PAGE
+\***************/
+
+/***************\
+   PAYMENT PAGE
+\***************/
+.booking-table th, 
+.booking-table td { text-align: center;}
+
+.stripe-button {
+    background-color: green;
+}
+
+/***************\
+     FOOTER
+\***************/
+footer {
+    background-color: #c82d00;
+    margin-top: 30px;
+    padding: 10px 0;
+}
+
+footer p {
+    color: #fff;
+    font-weight: 300;
+    margin: 10px 0;
+}
+
+/***************\
+  MEDIA QUERIES
+\***************/
+@media (max-width: 750px) {
+    aside {
+        background-color: #f8f8f8;
+        border: 1px solid #d8d8d8;
+        margin-top: 30px;
+        padding: 0 10px;
+    }
+}

@@ -25,25 +25,33 @@ class PriceManager
 
     public function calculate(Reservation $booking)
     {
-        $discount = null;
         $total = null;
 
         // Current date.
         $today = new \Datetime();
         $today->format('d-m-Y');
 
-        // Client
+        // Array containing the different clients
         $clients = $booking->getClients();
+
         foreach($clients as $client) {
-            // Date de naissance du client
-            $bd = $client->getBirthdate(); // Datetime object
+            // Useful variables
+            $birthdate = $client->getBirthdate(); // Datetime object
             $discount = $client->getDiscount(); // Boolean
+
             // Interval between the client's birthdate and current date.
-            $interval = $bd->diff($today);
+            $interval = $birthdate->diff($today);
+
             // Client's age = year in this interval.
             $clientsAge = $interval->y;
 
-            $total += $this->getPrice($clientsAge, $discount);
+            $price = $this->getPrice($clientsAge, $discount);
+
+            if($booking->getType() == "demi-journée") {
+                $price = $price / 2;
+            }
+            $client->setPrice($price);
+            $total += $price;
         }
 
         return $total;

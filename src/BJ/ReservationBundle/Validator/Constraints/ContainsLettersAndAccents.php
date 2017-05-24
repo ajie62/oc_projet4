@@ -1,4 +1,5 @@
 <?php
+
 namespace BJ\ReservationBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;

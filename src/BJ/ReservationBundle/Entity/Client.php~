@@ -50,18 +50,16 @@ class Client
     private $country;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
-
-    /**
      * @var boolean
      *
      * @ORM\Column(name="discount", type="boolean")
      */
     private $discount = false;
+
+    /**
+     * @var integer;
+     */
+    private $price;
 
     /**
      * @ORM\ManyToOne(targetEntity="Reservation", inversedBy="clients", cascade={"persist", "remove"})
@@ -199,26 +197,26 @@ class Client
     }
 
     /**
-     * Set email
+     * Set discount
      *
-     * @param string $email
+     * @param boolean $discount
      *
      * @return Client
      */
-    public function setEmail($email)
+    public function setDiscount($discount)
     {
-        $this->email = $email;
+        $this->discount = $discount;
 
         return $this;
     }
 
     /**
-     * Get email
+     * Get discount
      *
-     * @return string
+     * @return boolean
      */
-    public function getEmail()
+    public function getDiscount()
     {
-        return $this->email;
+        return $this->discount;
     }
 }

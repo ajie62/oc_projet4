@@ -51,13 +51,6 @@ class Reservation
     private $dateReservation;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="reduction", type="boolean")
-     */
-    private $reduction;
-
-    /**
      * @ORM\OneToMany(targetEntity="Client", mappedBy="reservation", cascade={"persist", "remove"})
      */
     private $clients;
@@ -172,30 +165,6 @@ class Reservation
     public function getDateReservation()
     {
         return $this->dateReservation;
-    }
-
-    /**
-     * Set reduction
-     *
-     * @param boolean $reduction
-     *
-     * @return Reservation
-     */
-    public function setReduction($reduction)
-    {
-        $this->reduction = $reduction;
-
-        return $this;
-    }
-
-    /**
-     * Get reduction
-     *
-     * @return boolean
-     */
-    public function getReduction()
-    {
-        return $this->reduction;
     }
 
     /**

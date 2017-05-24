@@ -1,12 +1,10 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Réservation{% endblock %}
+{% block title %}Réservation - {{ parent() }}{% endblock %}
 
 {% block body %}
     <div class="container main-container">
         <div id="reservation">
-            {% include "Reservation/inc/title.html.twig" %}
-
             <div class="row">
                 <div class="col-xs-12 col-sm-3">
                     {% include "Reservation/inc/prices.html.twig" %}
@@ -15,9 +13,22 @@
                     {{ form_start(form) }}
                         {{ form_widget(form) }}
 
-                    <button type="submit" class="btn btn-success pull-right">Continuer</button>
+                    <p class="form-buttons text-right">
+                        <button type="submit" class="btn continuer-button"><strong>Continuer</button>
+                    </p>
                     {{ form_end(form) }}
                 </div>
+                <noscript>
+                    <div class="col-xs-12 col-sm-3">
+                        <div class="alert alert-warning text-justify">
+                                Cher visiteur, il semblerait
+                                que le langage JavaScript soit désactivé sur
+                                votre navigateur. Le système de réservation du musée
+                                du Louvre fonctionne grâce à ce langage et serait plus
+                                agréable et intuitif si vous l'utilisiez.
+                        </div>
+                    </div>
+                </noscript>
             </div>
         </div>
     </div>
