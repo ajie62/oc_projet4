@@ -10,4 +10,15 @@ namespace BJ\ReservationBundle\Repository;
  */
 class ReservationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findTotalTickets($selectedDate)
+    {
+        $query = $this->createQueryBuilder('t')
+            ->where('t.date = :date')
+            ->setParameter('date', $selectedDate)
+            ->select('SUM(t.ticketsNumber)')
+            ->getQuery()
+        ;
+
+        return $query->getSingleScalarResult();
+    }
 }

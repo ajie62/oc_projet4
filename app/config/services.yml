@@ -7,10 +7,10 @@ services:
     bj_reservation_pricemanager:
         class: BJ\ReservationBundle\Services\PriceManager
 
-    app.more_than_thousand_tickets_validator:
+    app.more_than_thousand_tickets:
         class: BJ\ReservationBundle\Validator\Constraints\MoreThanThousandTicketsValidator
-        arguments:
-            - ["@doctrine.orm.entity_manager"]
-            - ["@request_stack"]
+        # In the validator, we need the entity manager, but we also need
+        # to access the request, a.k.a the form data
+        arguments: ['@doctrine.orm.entity_manager', '@request_stack']
         tags:
-            - { name: validator.constraint_validator }
+            - { name: validator.constraint_validator, alias: app_thousand }

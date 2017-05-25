@@ -66,22 +66,22 @@ class ReservationType extends AbstractType
             'data_class' => 'BJ\ReservationBundle\Entity\Reservation',
             'constraints' => [
                 new Assert\Callback([ 'callback' => function($data, ExecutionContext $context) {
-                    // Heure actuelle
+                    // Current time
                     $presentTime = date('H:i:s');
 
-                    // Jour actuel
+                    // Present day
                     $today = date_format(new \Datetime(), 'd/m/Y');
 
-                    // Date sélectionnée dans le datepicker, format 'd/m/Y'
+                    // Selected date in jQuery UI datepicker, formatted 'd/m/Y'
                     $selectedDate = date_format($data->getDate(), 'd/m/Y');
 
-                    // Date sélectionnée dans le datepicker, format 'd/m/' (pour vérifier jours fériés)
+                    // Selected date in jQuery UI datepicker, formatted 'd/m/' (holidays check)
                     $formattedDate = date_format($data->getDate(), 'd/m');
 
-                    // Type de billet sélectionné dans le formulaire
+                    // Selected type of tickets in the form
                     $selectedType = $data->getType();
 
-                    // Tableau des jours fériés français
+                    // Array of French holidays
                     $holidays = ['01/01', '14/04', '01/05', '08/05', '25/05', '05/06', '14/07', '15/08', '01/11', '11/11', '25/12'];
 
                     /*

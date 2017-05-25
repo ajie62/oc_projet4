@@ -4,6 +4,7 @@ namespace BJ\ReservationBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use BJ\ReservationBundle\Validator\Constraints as MyAssert;
 
 /**
  * Reservation
@@ -40,6 +41,7 @@ class Reservation
      * @var int
      *
      * @ORM\Column(name="ticketsNumber", type="integer")
+     * @MyAssert\MoreThanThousandTickets()
      */
     private $ticketsNumber;
 

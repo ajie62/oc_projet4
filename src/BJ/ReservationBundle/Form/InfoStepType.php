@@ -28,7 +28,7 @@ class InfoStepType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BJ\ReservationBundle\Entity\Reservation'
+            'data_class' => 'BJ\ReservationBundle\Entity\Reservation', 'validation_groups' => 'client'
         ));
     }
 
