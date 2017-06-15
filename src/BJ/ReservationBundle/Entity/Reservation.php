@@ -24,6 +24,13 @@ class Reservation
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="bookingName", type="string", length=255, nullable=false)
+     */
+    private $bookingName;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -56,6 +63,13 @@ class Reservation
      * @ORM\OneToMany(targetEntity="Client", mappedBy="reservation", cascade={"persist", "remove"})
      */
     private $clients;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reservationNumber", type="string", length=255, nullable=true)
+     */
+    private $reservationNumber;
 
     public function __construct()
     {
@@ -201,5 +215,53 @@ class Reservation
     public function getClients()
     {
         return $this->clients;
+    }
+
+    /**
+     * Set bookingName
+     *
+     * @param string $bookingName
+     *
+     * @return Reservation
+     */
+    public function setBookingName($bookingName)
+    {
+        $this->bookingName = $bookingName;
+
+        return $this;
+    }
+
+    /**
+     * Get bookingName
+     *
+     * @return string
+     */
+    public function getBookingName()
+    {
+        return $this->bookingName;
+    }
+
+    /**
+     * Set reservationNumber
+     *
+     * @param string $reservationNumber
+     *
+     * @return Reservation
+     */
+    public function setReservationNumber($reservationNumber)
+    {
+        $this->reservationNumber = $reservationNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get reservationNumber
+     *
+     * @return string
+     */
+    public function getReservationNumber()
+    {
+        return $this->reservationNumber;
     }
 }

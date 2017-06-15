@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container main-container">
+        <div class="row">
+            <h1 class="page-header">Erreur {{ status_code }}</h1>
+            <p>
+                Il semblerait que l'URL ne soit pas correcte et
+                que la page que vous recherchez n'existe pas.
+            </p>
+
+            <a href="{{ path('homepage') }}">Retourner à l'accueil</a>
+        </div>
+    </div>
+{% endblock %}

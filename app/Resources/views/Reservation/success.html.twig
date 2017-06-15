@@ -5,7 +5,17 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container main-container success-page">
-        <h1>Félicitations, la réservation de votre billet a bien été prise en compte.</h1>
+    <div class="success-page main-container">
+        <div class="container">
+            <div class="frame text-center">
+                <h2>Félicitations !</h2>
+                <br>
+                <p>La réservation de votre billet a bien été prise en compte. Vous allez recevoir votre billet par mail.</p>
+
+                <p>Nous vous souhaitons une agréable visite !</p>
+                <br>
+                <a class="btn btn-default" href="{{ path('homepage') }}"><span class="glyphicon glyphicon-home"></span> Retour à l'accueil</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

@@ -4,19 +4,19 @@
 
 {% block body %}
     <div class="container main-container">
-        {% include "Reservation/inc/title.html.twig" %}
+        {% include "inc/title.html.twig" %}
 
         <div id="reservation">
             <div class="row">
                 <div class="col-xs-12 col-sm-3">
-                    {% include "Reservation/inc/prices.html.twig" %}
+                    {% include "inc/prices.html.twig" %}
                 </div>
 
                 <div class="col-xs-12 col-sm-6">
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
                     <p class="form-buttons text-right">
-                        <button type="submit" class="btn go-back"><span class="glyphicon glyphicon-arrow-left"></span> Retour</button>
+                        <button type="submit" class="btn go-back" id="go-back"><span class="glyphicon glyphicon-arrow-left"></span> Retour</button>
                         <button type="submit" class="btn continuer-button">Continuer <span class="glyphicon glyphicon-arrow-right"></span></button>
                     </p>
                     {{ form_end(form) }}

@@ -10,6 +10,10 @@ body {
 
 a.toHomepage { text-decoration: none; }
 
+.row {
+    margin: 0;
+}
+
 /* Prices container */
 .prices-container {
     background-color: #4e4e4e;
@@ -51,11 +55,8 @@ a.toHomepage { text-decoration: none; }
     color: #fff;
 }
 
-.control-label {
-    background-color: rgba(78, 78, 78, .8);
+.go-back:hover {
     color: #fff;
-    display: block;
-    padding: 10px;
 }
 
 /* Aside */
@@ -78,6 +79,10 @@ aside h3 { margin: 0 0 10px 0; }
     text-decoration: underline;
 }
 
+.modal-content {
+    color: #333;
+}
+
 /***************\
    SECOND PAGE
 \***************/
@@ -87,9 +92,31 @@ aside h3 { margin: 0 0 10px 0; }
 \***************/
 .booking-table th, 
 .booking-table td { text-align: center;}
+.recap { line-height: 2em; }
+#status { margin-top: 20px; }
 
-.stripe-button {
-    background-color: green;
+/***************\
+   Success Page
+\***************/
+.success-page {
+    background-image: url('../images/louvre.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-height: 100vh;
+}
+
+.frame {
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 10px 30px 10px;
 }
 
 /***************\
@@ -97,7 +124,6 @@ aside h3 { margin: 0 0 10px 0; }
 \***************/
 footer {
     background-color: #c82d00;
-    margin-top: 30px;
     padding: 10px 0;
 }
 
@@ -111,10 +137,11 @@ footer p {
   MEDIA QUERIES
 \***************/
 @media (max-width: 750px) {
-    aside {
-        background-color: #f8f8f8;
-        border: 1px solid #d8d8d8;
-        margin-top: 30px;
-        padding: 0 10px;
+    .prices-container {
+        margin-bottom: 30px;
+    }
+
+    .summary {
+        margin: 30px 0;
     }
 }

@@ -7,6 +7,13 @@ services:
     bj_reservation_pricemanager:
         class: BJ\ReservationBundle\Services\PriceManager
 
+    bj_reservation_emailmanager:
+        class: BJ\ReservationBundle\Services\EmailManager
+        arguments: ["@mailer", "@templating"]
+
+    bj.reservation_codereservationmanager:
+        class: BJ\ReservationBundle\Services\CodeReservationManager
+
     app.more_than_thousand_tickets:
         class: BJ\ReservationBundle\Validator\Constraints\MoreThanThousandTicketsValidator
         # In the validator, we need the entity manager, but we also need

@@ -1,0 +1,23 @@
+<img style="width: 250px;" src="{{ absolute_url(asset('images/logo.png')) }}" alt="Logo du musée du Louvre" />
+
+<h2>Cher visiteur,</h2>
+
+<p>
+    Votre réservation du <strong>{{ booking.dateReservation|date('d/m/Y') }}</strong> a bien été effectuée.
+    Nous vous remercions de votre confiance et vous prions de trouver, ci-dessous,
+    le billet que vous devrez fournir lors de votre venue au musée.
+</p>
+
+<div class="info" style="background-color: #f8f8f8; border: 1px solid #d8d8d8; padding: 10px;">
+    <p><strong>Date de réservation :</strong> {{ booking.dateReservation|date('d/m/Y') }}</p>
+    <p><strong>Tarif :</strong> {{ bookingPrice }} &euro;</p>
+    <p><strong>Visiteurs :</strong></p>
+    {% for client in booking.clients %}
+        {{ client.firstname }} {{ client.lastname }}
+    {% endfor %}
+    <p><strong>Code de réservation : </strong>{{ booking.reservationNumber }}</p>
+</div>
+
+<p>Rappel : si vous avez coché la case "Dispose d'une réduction" lors de votre réservation,
+vous devez vous munir d'un justificatif que vous devrez impérativement présenter lors de
+votre venue au musée.</p>

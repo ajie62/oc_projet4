@@ -9,7 +9,7 @@ class ContainsLettersAndAccentsValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if(!preg_match('/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+$/', $value, $matches)) {
+        if(!preg_match('#^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\'-]+$#', $value, $matches)) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ string }}', $value)
                 ->addViolation();

@@ -23,35 +23,30 @@ class Client
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
      */
     private $lastname;
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="birthdate", type="datetime")
      */
     private $birthdate;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
 
     /**
      * @var boolean
-     *
      * @ORM\Column(name="discount", type="boolean")
      */
     private $discount = false;
@@ -68,7 +63,6 @@ class Client
 
     /**
      * Get id
-     *
      * @return int
      */
     public function getId()
@@ -78,9 +72,7 @@ class Client
 
     /**
      * Set firstname
-     *
      * @param string $firstname
-     *
      * @return Client
      */
     public function setFirstname($firstname)
@@ -92,7 +84,6 @@ class Client
 
     /**
      * Get firstname
-     *
      * @return string
      */
     public function getFirstname()
@@ -102,9 +93,7 @@ class Client
 
     /**
      * Set lastname
-     *
      * @param string $lastname
-     *
      * @return Client
      */
     public function setLastname($lastname)
@@ -116,7 +105,6 @@ class Client
 
     /**
      * Get lastname
-     *
      * @return string
      */
     public function getLastname()
@@ -126,9 +114,7 @@ class Client
 
     /**
      * Set birthdate
-     *
      * @param \DateTime $birthdate
-     *
      * @return Client
      */
     public function setBirthdate($birthdate)
@@ -140,7 +126,6 @@ class Client
 
     /**
      * Get birthdate
-     *
      * @return \DateTime
      */
     public function getBirthdate()
@@ -150,9 +135,7 @@ class Client
 
     /**
      * Set country
-     *
      * @param string $country
-     *
      * @return Client
      */
     public function setCountry($country)
@@ -164,7 +147,6 @@ class Client
 
     /**
      * Get country
-     *
      * @return string
      */
     public function getCountry()
@@ -174,12 +156,10 @@ class Client
 
     /**
      * Set reservation
-     *
      * @param \BJ\ReservationBundle\Entity\Reservation $reservation
-     *
      * @return Client
      */
-    public function setReservation(\BJ\ReservationBundle\Entity\Reservation $reservation = null)
+    public function setReservation(Reservation $reservation = null)
     {
         $this->reservation = $reservation;
 
@@ -188,7 +168,6 @@ class Client
 
     /**
      * Get reservation
-     *
      * @return \BJ\ReservationBundle\Entity\Reservation
      */
     public function getReservation()
@@ -198,9 +177,7 @@ class Client
 
     /**
      * Set discount
-     *
      * @param boolean $discount
-     *
      * @return Client
      */
     public function setDiscount($discount)
@@ -212,7 +189,6 @@ class Client
 
     /**
      * Get discount
-     *
      * @return boolean
      */
     public function getDiscount()

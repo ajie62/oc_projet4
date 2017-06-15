@@ -4,6 +4,7 @@ namespace BJ\ReservationBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use BJ\ReservationBundle\Validator\Constraints as MyAssert;
 
 /**
  * Reservation
@@ -23,6 +24,13 @@ class Reservation
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="bookingName", type="string", length=255, nullable=false)
+     */
+    private $bookingName;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -33,7 +41,6 @@ class Reservation
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=true)
-     * @ORM\OneToOne(targetEntity="BJ\ReservationBundle\Entity\typeTicket", cascade={"persist"})
      */
     private $type;
 
@@ -41,6 +48,7 @@ class Reservation
      * @var int
      *
      * @ORM\Column(name="ticketsNumber", type="integer")
+     * @MyAssert\MoreThanThousandTickets()
      */
     private $ticketsNumber;
 
@@ -52,16 +60,16 @@ class Reservation
     private $dateReservation;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="reduction", type="boolean")
-     */
-    private $reduction = false;
-
-    /**
      * @ORM\OneToMany(targetEntity="Client", mappedBy="reservation", cascade={"persist", "remove"})
      */
     private $clients;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reservationNumber", type="string", length=255, nullable=true)
+     */
+    private $reservationNumber;
 
     public function __construct()
     {
@@ -176,26 +184,60 @@ class Reservation
     }
 
     /**
-     * Set reduction
+     * Add client
      *
-     * @param boolean $reduction
+     * @param \BJ\ReservationBundle\Entity\Client $client
      *
      * @return Reservation
      */
-    public function setReduction($reduction)
+    public function addClient(\BJ\ReservationBundle\Entity\Client $client)
     {
-        $this->reduction = $reduction;
+        $this->clients[] = $client;
 
         return $this;
     }
 
     /**
-     * Get reduction
+     * Remove client
      *
-     * @return boolean
+     * @param \BJ\ReservationBundle\Entity\Client $client
      */
-    public function getReduction()
+    public function removeClient(\BJ\ReservationBundle\Entity\Client $client)
     {
-        return $this->reduction;
+        $this->clients->removeElement($client);
+    }
+
+    /**
+     * Get clients
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getClients()
+    {
+        return $this->clients;
+    }
+
+    /**
+     * Set bookingName
+     *
+     * @param string $bookingName
+     *
+     * @return Reservation
+     */
+    public function setBookingName($bookingName)
+    {
+        $this->bookingName = $bookingName;
+
+        return $this;
+    }
+
+    /**
+     * Get bookingName
+     *
+     * @return string
+     */
+    public function getBookingName()
+    {
+        return $this->bookingName;
     }
 }

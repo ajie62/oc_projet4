@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container main-container">
+        <div class="row">
+            <h1 class="page-header">Erreur {{ status_code }} | <em>{{ status_text }}</em></h1>
+            <p>
+                Soit vous avez sauté une étape, soit nous rencontrons
+                des problèmes liés aux serveurs.
+            </p>
+
+            <a href="{{ path('homepage') }}">Retourner à l'accueil</a>
+        </div>
+    </div>
+{% endblock %}

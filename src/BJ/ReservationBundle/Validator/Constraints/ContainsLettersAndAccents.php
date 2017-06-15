@@ -6,5 +6,7 @@ use Symfony\Component\Validator\Constraint;
 
 class ContainsLettersAndAccents extends Constraint
 {
-    public $message = '"{{ string }}" contient un ou plusieurs caractères interdits : ce champ ne peut contenir que des lettres.';
+    public $message =
+        '"{{ string }}" contient un ou plusieurs caractères interdits : 
+        ce champ ne peut pas contenir de chiffre.';
 }

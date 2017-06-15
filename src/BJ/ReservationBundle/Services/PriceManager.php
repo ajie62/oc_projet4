@@ -7,16 +7,16 @@ use BJ\ReservationBundle\Entity\Reservation;
 class PriceManager
 {
     private function getPrice($age, $discount) {
-        if($age < 4) {
+        if($age >= 0 && $age <= 4) {
             return 0;
         }
         if($discount) {
             return 10;
         }
-        if($age <= 12) {
+        if($age > 4 && $age < 12) {
             return 8;
         }
-        if($age <= 60) {
+        if($age >= 12 && $age <= 60) {
             return 16;
         }
 

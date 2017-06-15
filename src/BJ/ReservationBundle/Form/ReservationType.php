@@ -2,10 +2,12 @@
 
 namespace BJ\ReservationBundle\Form;
 
+use BJ\ReservationBundle\Validator\Constraints\ContainsLettersAndAccents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -19,11 +21,19 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('bookingName', TextType::class, array(
+                'label' => "Nom de réservation",
+                'required' => true,
+                'constraints' => [
+                    new ContainsLettersAndAccents(),
+                ],
+            ))
             ->add('date', DateType::class, array(
                 'label' => 'Date',
                 'attr' => ['class' => 'js-datepicker'],
                 'widget' => 'single_text',
                 'format' => "dd/MM/yyyy",
+                'required' => true,
                 'constraints' => [
                     new Assert\Range(array(
                         'min' => 'yesterday',
@@ -41,6 +51,7 @@ class ReservationType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'attr' => ['class' => 'radio-demi'],
+                'required' => true,
             ))
             ->add('ticketsNumber', IntegerType::class, array(
                 'label' => 'Nombre de billets',

@@ -4,18 +4,22 @@
 
 {% block body %}
     <div class="container main-container">
-        {% include "Reservation/inc/title.html.twig" %}
+        {% include "inc/title.html.twig" %}
 
         <div class="row">
-            <div class="col-xs-12 table-responsive">
-                <table class="table">
-                    <thead>
+            <h4 class="text-center">Récapitulatif</h4>
+            <p class="recap text-center">La réservation de <strong>{{ booking.ticketsNumber }}</strong> billet(s) pour le <strong>{{ booking.date|date('d/m/Y') }}</strong> est effectuée au nom de <strong>{{ booking.bookingName }}</strong>. Vous souhaitez visiter le musée pour une <strong>{{ booking.type }}</strong>.</p>
+
+            <hr>
+
+            <h4 class="text-center">Visiteurs</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-condensed">
+                    <thead class="">
                         <tr>
-                            <th>N°</th>
+                            <th>#</th>
                             <th>Prénom</th>
                             <th>Nom</th>
-                            <th>Naissance</th>
-                            <th>Pays</th>
                             <th>Réduction</th>
                             <th>Prix</th>
                         </tr>
@@ -27,8 +31,6 @@
                                 <td>{{ loop.index }}</td>
                                 <td>{{ client.firstname }}</td>
                                 <td>{{ client.lastname }}</td>
-                                <td>{{ client.birthdate|date('d/m/Y') }}</td>
-                                <td>{{ client.country }}</td>
                                 <td>
                                     {% if client.discount %}
                                         Oui
@@ -39,34 +41,30 @@
                                 <td>{{ client.price }}</td>
                             </tr>
                         {% endfor %}
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><strong>Total :</strong> {{ price }} &euro;</td>
-                        </tr>
                     </tbody>
                 </table>
+            </div>
 
-                <div id="status">
-                    <form action="{{ path('checkout') }}" method="post">
-                        <script src="https://checkout.stripe.com/checkout.js"
-                                class="stripe-button"
-                                data-key="pk_test_gAdOsVrMQy9Blcxn88rKlVA7" 
-                                data-amount="{{ price }}00" 
-                                data-name="Musée du Louvre" 
-                                data-description="Réservation de billets"
-                                data-label="Payer par carte" 
-                                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                data-locale="auto" 
-                                data-zip-code="true" 
-                                data-currency="eur">
-                        </script>
-                    </form>
-                </div>
+            <div class="text-right">
+                <label for="total">Total : </label>
+                <input class="text-right" type="number" placeholder="{{ price }} &euro;" readonly />
+            </div>
+
+            <div id="status">
+                <form action="{{ path('checkout') }}" method="post">
+                    <button type="submit" class="btn go-back" id="go-back"><span class="glyphicon glyphicon-arrow-left"></span> Retour</button>
+                    <script src="https://checkout.stripe.com/checkout.js"
+                            class="stripe-button"
+                            data-key="pk_test_gAdOsVrMQy9Blcxn88rKlVA7" 
+                            data-amount="{{ price }}00" 
+                            data-name="Musée du Louvre" 
+                            data-description="Réservation de billets"
+                            data-label="Payer par carte" 
+                            data-image="https://www.guideapolis.fr/resources/uploaded/tours/T13720324194707.jpg"
+                            data-locale="auto" 
+                            data-currency="eur">
+                    </script>
+                </form>
             </div>
         </div>
     </div>
