@@ -12,9 +12,11 @@
     <p><strong>Date de réservation :</strong> {{ booking.dateReservation|date('d/m/Y') }}</p>
     <p><strong>Tarif :</strong> {{ bookingPrice }} &euro;</p>
     <p><strong>Visiteurs :</strong></p>
+    <ul>
     {% for client in booking.clients %}
-        {{ client.firstname }} {{ client.lastname }}
+        <li>{{ client.firstname }} {{ client.lastname }}</li>
     {% endfor %}
+    </ul>
     <p><strong>Code de réservation : </strong>{{ booking.reservationNumber }}</p>
 </div>
 

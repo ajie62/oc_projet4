@@ -15,7 +15,11 @@ class InfoStepType extends AbstractType
     {
         $builder
             ->add('clients', CollectionType::class, array(
+                'validation_groups' => false,
                 'label' => false,
+                'constraints' => [
+                    new Assert\Valid(),
+                ],
                 'entry_type' => ClientType::class,
                 'entry_options' => array('label' => false),
              ))

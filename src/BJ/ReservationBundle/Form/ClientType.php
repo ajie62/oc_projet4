@@ -58,7 +58,7 @@ class ClientType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BJ\ReservationBundle\Entity\Client'
+            'data_class' => 'BJ\ReservationBundle\Entity\Client',
         ));
     }
 

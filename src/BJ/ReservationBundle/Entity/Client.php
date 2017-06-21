@@ -3,6 +3,7 @@
 namespace BJ\ReservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use BJ\ReservationBundle\Validator\Constraints as MyAssert;
 
 /**
  * Client
@@ -24,12 +25,14 @@ class Client
     /**
      * @var string
      * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
+     * @MyAssert\ContainsLettersAndAccents()
      */
     private $firstname;
 
     /**
      * @var string
      * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
+     * @MyAssert\ContainsLettersAndAccents()
      */
     private $lastname;
 
