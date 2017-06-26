@@ -21,7 +21,6 @@
     },
     "require": {
         "php": ">=5.5.9",
-        "behat/mink-goutte-driver": "^1.2",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
         "doctrine/orm": "^2.5",
